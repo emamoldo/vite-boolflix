@@ -4,24 +4,62 @@ export default {
   name: 'App',
   data() {
     return {
-      moviesList: []
+      moviesList: [],
+      searchText: '',
     }
   },
+
+  methods: {
+    movies(url) {
+      axios
+        .get(url)
+        .then(resp => {
+          console.log(resp.data.results);
+          this.moviesList = resp.data.results;
+        })
+    },
+
+    searchMovies() {
+      console.log(this.searchText);
+      this.movies(`https://api.themoviedb.org/3/search/movie?api_key=1167e581ec02fa604200a947a803071e&query=${this.searchMovies}`)
+
+    }
+  },
+
   mounted() {
-    axios
-      .get('https://api.themoviedb.org/3/search/movie?api_key=1167e581ec02fa604200a947a803071e&query=')
-      .then(resp => {
-        console.log(resp.data.results);
-        this.moviesList = resp.data.results;
-      })
+    this.movies('https://api.themoviedb.org/3/search/movie?api_key=1167e581ec02fa604200a947a803071e&query=')
   }
 }
 </script>
-<!-- remember to install axios -->
 
 
 <template>
+  <header>
+    <div class="searchbox">
+      <input type="text" v-model="searchText" @keyup="searchMovies" placeholder="Search Movie">
+      <button type="button">Search</button>
+    </div>
+  </header>
 
+  <main>
+    <section class="movies">
+      <div class="container">
+        <div class="row">
+          <div class="col" v-for="movies in moviesList">
+            <div class="card">
+              <div>
+                {{ moviesList.title }}
+                {{ moviesList.original_title }}
+                {{ moviesList.original_language }}
+                {{ moviesList.vote_avarage }}
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 </template>
 
 
