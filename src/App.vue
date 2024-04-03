@@ -14,7 +14,7 @@ export default {
       axios
         .get(url)
         .then(resp => {
-          console.log(resp.data.results);
+          console.log(resp.data.results, this.moviesList);
           this.moviesList = resp.data.results;
         })
     },
@@ -22,7 +22,6 @@ export default {
     searchMovies() {
       console.log(this.searchText);
       this.movies(`https://api.themoviedb.org/3/search/movie?api_key=1167e581ec02fa604200a947a803071e&query=${this.searchMovies}`)
-
     }
   },
 
@@ -48,12 +47,11 @@ export default {
           <div class="col" v-for="movies in moviesList">
             <div class="card">
               <div>
-                {{ moviesList.title }}
-                {{ moviesList.original_title }}
-                {{ moviesList.original_language }}
-                {{ moviesList.vote_avarage }}
+                {{ movies.title }}
+                {{ movies.original_title }}
+                {{ movies.original_language }}
+                {{ movies.vote_avarage }}
               </div>
-
             </div>
           </div>
         </div>
@@ -61,7 +59,5 @@ export default {
     </section>
   </main>
 </template>
-
-
 
 <style></style>
