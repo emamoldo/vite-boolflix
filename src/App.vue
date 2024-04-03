@@ -21,7 +21,7 @@ export default {
 
     searchMovies() {
       console.log(this.searchText);
-      this.movies(`https://api.themoviedb.org/3/search/movie?api_key=1167e581ec02fa604200a947a803071e&query=${this.searchMovies}`)
+      this.movies(`https://api.themoviedb.org/3/search/movie?api_key=1167e581ec02fa604200a947a803071e&query=${this.searchText}`)
     }
   },
 
@@ -44,13 +44,19 @@ export default {
     <section class="movies">
       <div class="container">
         <div class="row">
-          <div class="col" v-for="movies in moviesList">
+          <div class="col" v-for="movie in moviesList">
             <div class="card">
               <div>
-                {{ movies.title }}
-                {{ movies.original_title }}
-                {{ movies.original_language }}
-                {{ movies.vote_avarage }}
+                {{ movie.title }}
+                <br>
+                {{ movie.original_title }}
+                <br>
+                {{ movie.original_language }}
+                <br>
+                {{ movie.vote_average }}
+                <br>
+                <br>
+
               </div>
             </div>
           </div>
