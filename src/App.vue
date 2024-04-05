@@ -54,11 +54,11 @@ export default {
     integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <header>
+  <header class="header">
+    <div class="logo">BOOLFLIX</div>
+
     <div class="searchbox">
       <input type="text" v-model="searchText" @keyup="search" placeholder="Search Movie">
-      <button type="button">Search</button>
-      <!-- TODO: Use the botton to search the movie -->
     </div>
   </header>
 
@@ -114,4 +114,22 @@ export default {
   </main>
 </template>
 
-<style></style>
+<style>
+.header {
+  height: 50px;
+  width: 1870px;
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .logo {
+    color: red;
+    margin: 1rem;
+  }
+
+  .searchbox {
+    margin: 1rem;
+  }
+}
+</style>
