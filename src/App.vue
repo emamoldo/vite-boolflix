@@ -38,7 +38,7 @@ export default {
     },
     searchSeries() {
       this.series(`https://api.themoviedb.org/3/search/tv?api_key=1167e581ec02fa604200a947a803071e&language=&query=${this.searchText}`)
-    }
+    },
   },
   mounted() {
     this.movies('https://api.themoviedb.org/3/search/movie?api_key=1167e581ec02fa604200a947a803071e&query=')
@@ -62,54 +62,47 @@ export default {
     </div>
   </header>
 
-  <main>
-    <section class="movies">
+  <main id="main_section">
+    <section class="main">
       <div class="container_movie">
-        <h1>Movies:</h1>
         <div v-for="movie in moviesList">
           <div class="movies">
             <div>
-              {{ movie.title }}
-              <br>
-
-              {{ movie.original_title }}
-              <br>
-
-              <img :src="`https://flagsapi.com/${movie.original_language.toUpperCase()}/flat/48.png`" alt="">
-              <br>
-
-              {{ movie.original_language }}
-              <br>
 
               <img :src="`https://image.tmdb.org/t/p/w185/${movie.poster_path}`" alt="">
-              <br>
 
-              {{ Math.ceil(movie.vote_average / 2) }}
-              <!-- <i class="fa-solid fa-star"></i> -->
-              <br>
+              <div class="info">
+                {{ movie.title }}
+                {{ movie.original_title }}
+                {{ movie.original_language }}
+                <img :src="`https://flagsapi.com/${movie.original_language.toUpperCase()}/flat/48.png`" alt="">
+                {{ Math.ceil(movie.vote_average / 2) }}
+                <!-- <i class="fa-solid fa-star"></i> -->
+              </div>
+
             </div>
           </div>
+        </div>
+      </div>
 
-          <div class="col" v-for="serie in tvSeries">
-            <h2>TV Series:</h2>
-            <div class="series">
-              <div>
+      <div class="container_series">
+        <div class="col" v-for="serie in tvSeries">
+          <div class="series">
+            <div>
+
+              <img class="poster" :src="`https://image.tmdb.org/t/p/w185/${serie.poster_path}`" alt="">
+
+              <div class="info">
                 {{ serie.original_name }}
-                <br>
-
                 <img :src="`https://flagsapi.com/${serie.origin_country}/flat/48.png`" alt="">
-                <br>
-
-                <img :src="`https://image.tmdb.org/t/p/w185/${serie.poster_path}`" alt="">
-                <br>
                 {{ Math.ceil(serie.vote_average / 2) }}
-                <br>
-                <br>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+
     </section>
   </main>
 </template>
@@ -131,5 +124,14 @@ export default {
   .searchbox {
     margin: 1rem;
   }
+}
+
+main {
+  background-color: gray;
+}
+
+
+.info {
+  display: none;
 }
 </style>
